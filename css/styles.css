@@ -1,0 +1,743 @@
+/* Importation des polices d'écritures */
+
+@font-face {    /* Titres */
+    font-family: "Soulmaze";
+    src: url("../polices/Soulmaze.otf") format("opentype");
+}
+@font-face {    /* Sous-titres, liens, paragraphes et champs */
+    font-family: "Zabal";
+    src: url("../polices/Zabal.otf") format("opentype");
+}
+
+/* Réinitialisation des propriétés par défaut */
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+}
+
+/* Déclaration des propriétés globales */
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background: #00040C;
+    color: white;
+    font-family: "Zabal";
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+#accueil {
+    overflow-y: hidden;
+}
+h1, h2 {
+    font-weight: normal;
+}
+h1 {
+    font-family: "Soulmaze";
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+ul {
+    display: flex;
+    list-style-type: none;
+}
+input, select, option, textarea {
+    font-family: "Zabal";
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    border: none;
+}
+
+/* Chargement */
+
+#chargement {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: #00040C;
+    z-index: 3;
+    transition: filter 0.75s ease-in-out;
+}
+#chargement > ul {
+    display: flex;
+}
+#chargement > ul > li {
+    margin: 0 10px;
+}
+#chargement > ul > li > div {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #0066FF;
+}
+#chargement > ul > li:first-child > div {
+    animation: loading 1s ease-in-out infinite;
+}
+#chargement > ul > li:nth-child(2) > div {
+    animation: loading 1s 0.25s ease-in-out infinite;
+}
+#chargement > ul > li:last-child > div {
+    animation: loading 1s 0.5s ease-in-out infinite;
+}
+
+/* Header + Footer */
+
+header, footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1;
+}
+
+/* Header */
+
+header {
+    position: sticky;
+    top: 0;
+    height: 125px;
+}
+#logo img {
+    width: 45px;
+}
+header > ul > li {
+    margin: 0 35px;
+}
+header > ul > li > a {
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.4s ease;
+}
+header > ul > li > a:hover {
+    color: white;
+}
+
+/* Footer */
+
+footer {
+    padding: 50px 0;
+}
+footer > ul > li {
+    transition: transform 0.3s ease-out;
+}
+footer > ul > li:hover {
+    transform: translateY(-5px);
+}
+footer > ul > li > a {
+    padding: 10px;
+}
+
+/* Zones de lien */
+
+#intro > div > a, .carte > a, .chaîne > a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* Boutons (CTA) */
+
+#theme, #ancre, #intro > div, #precedent, #suivant {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0066FF;
+    cursor: pointer;
+}
+#theme {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+}
+#soleil {
+    display: none;
+}
+#ancre {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    right: 28px;
+    bottom: 40px;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+    filter: opacity(0%);
+    transition: filter 0.3s ease-in-out;
+}
+
+/* Lumière de fond (normale et fixe) */
+
+#lumiere, #lumiere_fixe {
+    width: 650px;
+    height: 650px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    filter: blur(125px);
+    background: linear-gradient(180deg, #0500FF, #FF0000);
+    z-index: -1;
+}
+#lumiere {
+    position: absolute;
+}
+#lumiere_fixe {
+    position: fixed;
+}
+#accueil #lumiere {
+    animation: reveal 1.75s 3s ease-out forwards;
+}
+
+/* Page "index.php" */
+
+#intro {
+    height: calc(100vh - 125px - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+#intro > h1 {
+    font-size: 45px;
+    letter-spacing: normal;
+}
+#intro > h2 {
+    margin-top: 37px;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 0.8);
+}
+#intro > div {
+    position: relative;
+    width: 110px;
+    height: 40px;
+    margin-top: 64px;
+    border-radius: 6px;
+}
+#intro > div > p, #intro > div > svg {
+    margin: 0 4px;
+}
+#intro > div > p {
+    font-size: 12px;
+    font-weight: bold;
+}
+#caroussel {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#progression {
+    padding: 29px 0 150px;
+}
+#etapes, #actions {
+    display: flex;
+    justify-content: center;
+}
+#etapes > li {
+    position: relative;
+    margin: 0 7.5px;
+    width: 40px;
+    height: 2px;
+}
+#etapes > li > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+#etapes > li > .en_cours {
+    background: #0066FF;
+    transform: scaleX(0%);
+    transform-origin: left;
+}
+#actions {
+    padding-top: 58px;
+}
+#precedent, #suivant {
+    width: 35px;
+    height: 35px;
+    border-radius: 6px;
+    margin: 0 9.5px;
+}
+
+/* Pages "video.php" + "youtubeur.php" */
+
+#donnees {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 50px 20px 150px;
+}
+#donnees > #visuel, #donnees > #textuel, #donnees > img {
+    margin: 25px;
+}
+#donnees > #visuel > img, #donnees > #visuel > a {
+    margin: 7.5px 0;
+}
+#donnees > #visuel > img {
+    width: 441px;
+    border-radius: 20px;
+}
+#donnees > #visuel > a {
+    display: inline-flex;
+    align-items: center;
+}
+#donnees > #visuel > a > img, #donnees > #visuel > a > p {
+    margin: 0 4.5px;
+}
+#donnees > #visuel > a > img {
+    width: 33px;
+    margin-left: 0;
+    border-radius: 50%;
+}
+#donnees > #visuel > a > p {
+    margin-right: 0;
+}
+#donnees > #textuel {
+    width: 600px;
+    padding: 25px;
+    background: rgba(181, 184, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+#donnees > #textuel > * {
+    margin: 30px 0;
+}
+#donnees > #textuel > .details:last-child {
+    margin-bottom: 0;
+}
+#donnees > #textuel > h1 {
+    margin-top: 7.5px;
+    font-size: 24px;
+    letter-spacing: normal;
+}
+#donnees > #textuel > h2 {
+    font-size: 14px;
+    line-height: 18px;
+    text-align: justify;
+}
+.details {
+    display: flex;
+    justify-content: space-between;
+}
+.details > ul > li {
+    display: flex;
+    align-items: center;
+    margin: 0 3px;
+}
+.details > ul > li:first-child {
+    margin-left: 0;
+}
+.details > ul > li:last-child {
+    margin-right: 0;
+}
+.details > ul > li > svg, .details > ul > li > p, .details > ul > li > a {
+    margin: 0 3px;
+}
+.details > ul > li:first-child svg {
+    margin-left: 0;
+}
+#separation {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
+#categorie > div {
+    display: flex;
+    align-items: center;
+}
+#categorie > div > img, #categorie > div > p {
+    margin: 0 4.5px;
+}
+#categorie > div > img {
+    width: 33px;
+    margin-left: 0;
+    border-radius: 50%;
+}
+#categorie > div > p {
+    margin-right: 0;
+}
+#categorie > p {
+    margin-top: 30px;
+    text-align: justify;
+}
+
+/* Page "youtubeur.php" */
+
+#centre > #donnees {
+    align-items: center;
+    padding: 100px 20px 200px;
+}
+#donnees > img {
+    height: 200px;
+    border-radius: 50%;
+}
+
+/* Cartes de vidéo */
+
+.carte {
+    width: 441px;
+    height: 375px;
+    background: rgba(181, 184, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease-out;
+}
+.carte:hover {
+    transform: translateY(-10px);
+}
+.carte_accueil {
+    position: absolute;
+    display: none;
+    filter: opacity(0%);
+    transition: filter 0.2s ease-in, transform 0.3s ease-out;
+}
+.miniature {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+}
+.informations {
+    height: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0 14px;
+}
+.informations > div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    text-wrap: nowrap;  /* Certaines fois, cette propriété n'est pas reconnu par le navigateur */
+}
+.chaîne {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.chaîne > img, .chaîne > p {
+    margin: 0 4.5px;
+}
+.chaîne > img {
+    width: 33px;
+    margin-left: 0;
+    border-radius: 50%;
+}
+.chaîne > p {
+    margin-right: 0;
+}
+.statistiques > li {
+    display: flex;
+    align-items: center;
+    margin: 0 3px;
+}
+.statistiques > li:first-child {
+    margin-left: 0;
+}
+.statistiques > li > svg, .statistiques > li > p {
+    margin: 0 3px;
+}
+
+/* Page "toutes_les_videos.php" */
+
+#resume {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0;
+}
+#resume > h1 {
+    font-size: 45px;
+    letter-spacing: normal;
+}
+#resume > p, #resume > form {
+    margin-top: 37px;
+}
+#resume > form > * {
+    margin: 0 2px;
+}
+#resume > p, #resume > form > label {
+    color: rgba(255, 255, 255, 0.8);
+}
+#resume > form > label {
+    margin-left: 0;
+    margin-right: 5px;
+}
+#resume > form > select {
+    width: 180px;
+    height: 40px;
+    padding-left: 3px;
+    border-radius: 6px;
+}
+#resume > form > input {
+    width: 110px;
+    height: 40px;
+    margin-right: 0;
+    color: white;
+    background: #0066FF;
+    border-radius: 6px;
+    cursor: pointer;
+}
+#tableau {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 150px;
+}
+#tableau > .carte {
+    position: relative;
+    margin: 25px;
+}
+
+/* Pages "connexion.html" + "admin_choix.php" */
+
+#aucun_scroll, #choix {
+    height: calc(100vh - 125px - 121px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#aucun_scroll > h1, #choix > h1 {
+    font-size: 45px;
+    letter-spacing: normal;
+}
+#aucun_scroll > form {
+    margin-top: 37px;
+}
+#aucun_scroll > form > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#aucun_scroll > form > div > * {
+    margin: 10px 0;
+}
+#aucun_scroll > form > div > label {
+    color: rgba(255, 255, 255, 0.8);
+}
+#aucun_scroll > form > div > input {
+    width: 100px;
+    height: 25px;
+    border-radius: 6px;
+    text-align: center;
+}
+#aucun_scroll > form > div:last-child input, #choix > form > input {
+    width: 110px;
+    height: 40px;
+    color: white;
+    background: #0066FF;
+    cursor: pointer;
+}
+
+/* Page "redirections.php" */
+
+#redirection {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#redirection > p {
+    margin: 5px 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Page "admin_choix.php" */
+
+#choix > h1 {
+    margin-top: 0;
+}
+#choix > * {
+    margin-top: 37px;
+}
+#choix > form select, #choix > form input {
+    border-radius: 6px;
+}
+#choix > form > * {
+    margin: 0 2px;
+}
+#choix > form > select {
+    width: 125px;
+    height: 40px;
+    padding-left: 3px;
+}
+#choix > form > select:first-child {
+    margin-left: 0;
+}
+#choix > form > select:last-child {
+    margin-right: 0;
+}
+
+/* Page "admin_traitement.php" */
+
+#traitement {
+    min-height: calc(100vh - 125px - 120px - 151px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 150px;
+}
+#traitement > form {
+    width: 550px;
+    padding: 35px;
+    background: rgba(181, 184, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+#traitement > form > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0;
+}
+#traitement > form > *:nth-child(2) {
+    margin-top: 30px;
+}
+#traitement > form > div > label {
+    color: rgba(255, 255, 255, 0.8);
+}
+#traitement > form > div > input, #traitement > form > div > select, #traitement > form > div > textarea {
+    width: 225px;
+    height: 20px;
+    padding-left: 3px;
+    border-radius: 3px;
+}
+#traitement > form > div > input[type="number"] {
+    width: 100px;
+}
+#traitement > form > div > textarea {
+    box-sizing: border-box;
+    padding-top: 3px;
+}
+#traitement > form > p {
+    margin-top: 30px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+#traitement > form > input {
+    width: 110px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+    margin-top: 30px;
+    border-radius: 6px;
+}
+#envoyer {
+    margin-right: 5px;
+    background: #0066FF;
+}
+#reinitialiser {
+    margin-left: 5px;
+    background: transparent;
+    border: 1px solid white;
+}
+#continuer {
+    background: #0066FF;
+}
+
+/* Thème jour */
+
+.jour {
+    background: #F9F9F9;
+    color: black;
+}
+.jour a {
+    color: black;
+}
+.jour #chargement {
+    background: #F9F9F9;
+}
+.jour svg {
+    filter: invert(100%);
+}
+.jour #theme svg , .jour #ancre svg, .jour #intro > div svg, .jour #precedent svg , .jour #suivant svg {
+    filter: none;
+}
+.jour #lune {
+    display: none;
+}
+.jour #soleil {
+    display: block;
+}
+.jour header > ul > li > a {
+    color: black;
+}
+.jour #lumiere, .jour #lumiere_fixe {
+    background: linear-gradient(180deg, #FFE500, #FF00E5);
+}
+.jour #intro > h2 {
+    color: black;
+}
+.jour #intro > div > p {
+    color: white;
+}
+.jour #etapes > li > div {
+    background: black;
+}
+.jour #etapes > li > .en_cours {
+    background: #0066FF;
+}
+.jour #donnees > #textuel {
+    background: rgba(139, 139, 139, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.jour .carte {
+    background: rgba(139, 139, 139, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.jour #resume > p, .jour #resume > form > label {
+    color: black;
+}
+.jour #aucun_scroll > form > div > label {
+    color: black;
+}
+.jour #redirection > p {
+    color: black;
+}
+.jour #traitement > form {
+    background: rgba(139, 139, 139, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.jour #traitement > form > div > label {
+    color: black;
+}
+.jour #traitement > form > p {
+    color: black;
+}
+.jour #reinitialiser {
+    color: black;
+    border-color: black;
+}
+
+/* Animations */
+
+@keyframes loading {
+    0% {
+        transform: translateY(0%);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+@keyframes reveal {
+    from {
+        transform: translateX(-50%) scale(0%);
+        filter: blur(125px) opacity(0%);
+    }
+    to {
+        transform: translateX(-50%) scale(100%);
+        filter: blur(125px) opacity(100%);
+    }
+}
